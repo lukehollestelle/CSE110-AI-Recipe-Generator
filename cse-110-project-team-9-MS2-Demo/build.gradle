@@ -1,0 +1,42 @@
+plugins {
+    id 'java'
+    id 'org.openjfx.javafxplugin' version '0.0.10'
+}
+
+
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(11)
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+javafx {
+    version = '17'
+    modules = ['javafx.controls', 'javafx.fxml', 'javafx.base', 'javafx.graphics', 'javafx.media','javafx.swing']
+}
+
+dependencies {
+    def junitVersion = '5.8.1'
+
+    // This provides the JUnit API.
+    testImplementation "org.junit.jupiter:junit-jupiter-api:$junitVersion"
+    // This provides the TestEngine to actually run the tests.
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$junitVersion"
+
+    implementation group: 'org.openjfx', name: 'javafx-controls', version: '17'
+    implementation group: 'org.openjfx', name: 'javafx-fxml', version: '17'
+
+    implementation 'org.json:json:20231013'
+
+    implementation 'org.mongodb:mongodb-driver-sync:4.11.0'
+}
+
+
+test {
+    useJUnitPlatform()
+}
